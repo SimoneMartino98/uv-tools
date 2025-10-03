@@ -1,2 +1,0 @@
-[console_scripts]
-uv-tool = uv_tool.main:main
