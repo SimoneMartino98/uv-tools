@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/uv_tool/__init__.py
+src/uv_tool/main.py
+src/uv_tool.egg-info/PKG-INFO
+src/uv_tool.egg-info/SOURCES.txt
+src/uv_tool.egg-info/dependency_links.txt
+src/uv_tool.egg-info/entry_points.txt
+src/uv_tool.egg-info/top_level.txt
