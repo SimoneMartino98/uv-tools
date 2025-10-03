@@ -14,6 +14,14 @@ def cmd_create(args):
 
     subprocess.run(cmd, check=True)
 
+def cmd_remove(args):
+    envs_dir = get_global_envs_dir()
+    target_dir = envs_dir / args.name
+
+    cmd = ["rm", "-rf", str(target_dir)]
+
+    subprocess.run(cmd, check=True)
+
 def main():
     parser = argparse.ArgumentParser(prog="uv-tool", description="Manage global envs with uv")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -22,6 +30,10 @@ def main():
     create_parser.add_argument("name", help="Name of the environment")
     create_parser.add_argument("--python", help="Python version to be installed", required=False)
     create_parser.set_defaults(func=cmd_create)
+
+    remove_parser = subparsers.add_parser("remove", help="remove a specific global environment")
+    remove_parser.add_argument("name", help="Name of the environment")
+    remove_parser.set_defaults(func=cmd_remove)
 
     args = parser.parse_args()
     args.func(args)
