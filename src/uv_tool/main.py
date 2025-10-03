@@ -1,26 +1,9 @@
 #!/usr/bin/env python3
 
 import argparse
-import subprocess
-from .config import get_global_envs_dir
 
-def cmd_create(args):
-    envs_dir = get_global_envs_dir()
-    target_dir = envs_dir / args.name
-
-    cmd = ["uv", "venv", str(target_dir)]
-    if args.python:
-        cmd.extend(["--python", args.python])
-
-    subprocess.run(cmd, check=True)
-
-def cmd_remove(args):
-    envs_dir = get_global_envs_dir()
-    target_dir = envs_dir / args.name
-
-    cmd = ["rm", "-rf", str(target_dir)]
-
-    subprocess.run(cmd, check=True)
+from .cmd.create import cmd_create
+from .cmd.remove import cmd_remove
 
 def main():
     parser = argparse.ArgumentParser(prog="uv-tool", description="Manage global envs with uv")
