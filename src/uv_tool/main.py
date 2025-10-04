@@ -3,6 +3,7 @@
 import argparse
 
 from .cmd.create import cmd_create
+from .cmd.list import cmd_list
 from .cmd.remove import cmd_remove
 
 def main():
@@ -19,6 +20,12 @@ def main():
     remove_parser = subparsers.add_parser("remove", help="remove a specific global environment")
     remove_parser.add_argument("name", help="Name of the environment")
     remove_parser.set_defaults(func=cmd_remove)
+
+    # uv-tool list
+    list_parser = subparsers.add_parser(
+        "list", help="List global environments with their Python version and last modified date"
+    )
+    list_parser.set_defaults(func=cmd_list)
 
     args = parser.parse_args()
     args.func(args)
